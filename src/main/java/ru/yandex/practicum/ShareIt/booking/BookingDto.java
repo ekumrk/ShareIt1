@@ -3,6 +3,7 @@ package ru.yandex.practicum.ShareIt.booking;
 import lombok.Builder;
 import lombok.Data;
 
+import ru.yandex.practicum.ShareIt.booking.assistive.Status;
 import ru.yandex.practicum.ShareIt.item.Item;
 import ru.yandex.practicum.ShareIt.user.User;
 

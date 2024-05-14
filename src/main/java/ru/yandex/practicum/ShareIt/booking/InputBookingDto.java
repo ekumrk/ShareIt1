@@ -2,20 +2,23 @@ package ru.yandex.practicum.ShareIt.booking;
 
 import lombok.Builder;
 import lombok.Data;
-
 import ru.yandex.practicum.ShareIt.booking.assistive.Status;
-import ru.yandex.practicum.ShareIt.item.Item;
-import ru.yandex.practicum.ShareIt.user.User;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class BookingDto {
-    private Long id;
+class InputBookingDto {
+    @Positive
+    private Long itemId;
+    @FutureOrPresent
+    @NotNull
     private LocalDateTime start;
+    @FutureOrPresent
+    @NotNull
     private LocalDateTime end;
-    private Item item;
-    private User booker;
     private Status status;
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -25,13 +27,13 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public UserDto updateUser(@PathVariable Long userId, @RequestBody UserDto dto) {
+    public UserDto updateUser(@PathVariable @NotNull @Positive Long userId, @RequestBody UserDto dto) {
         dto.setId(userId);
         return userService.updateUser(dto);
     }
 
     @GetMapping("/{userId}")
-    public UserDto getUserById(@PathVariable Long userId) {
+    public UserDto getUserById(@PathVariable @NotNull @Positive Long userId) {
         return userService.getUserById(userId);
     }
 
@@ -41,7 +43,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteUserById(@PathVariable Long userId) {
+    public void deleteUserById(@PathVariable @NotNull @Positive Long userId) {
         userService.deleteUserById(userId);
     }
 }

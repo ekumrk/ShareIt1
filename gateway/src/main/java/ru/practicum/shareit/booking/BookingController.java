@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.practicum.shareit.booking.dto.InputBookingDto;
 import ru.practicum.shareit.booking.dto.State;
-import ru.practicum.shareit.exception.EntityValidationException;
+import ru.practicum.shareit.exception.MethodArgumentNotValidException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -38,7 +38,7 @@ public class BookingController {
     public ResponseEntity<Object> bookItem(@RequestHeader(USER_ID) @Positive long userId,
                                            @RequestBody @Valid InputBookingDto dto) {
         if (dto.getStart().equals(dto.getEnd()) || dto.getStart().isAfter(dto.getEnd())) {
-            throw new EntityValidationException("Некорректные начало и конец!");
+            throw new MethodArgumentNotValidException("Некорректные начало и конец!");
         }
         log.info("Gateway. Creating booking {}, userId={}", dto, userId);
         return bookingClient.createBooking(userId, dto);

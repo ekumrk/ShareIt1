@@ -11,16 +11,8 @@ import ru.practicum.shareit.exception.model.ErrorResponse;
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleEntityInvalidException(final EntityValidationException e) {
-        return new ErrorResponse(
-                e.getMessage()
-        );
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleEntityNotFoundException(final EntityNotFoundException e) {
+    @ResponseStatus(HttpStatus.BAD_REQUESTD)
+    public ErrorResponse handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
         return new ErrorResponse(
                 e.getMessage()
         );
